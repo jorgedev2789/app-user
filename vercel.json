@@ -12,5 +12,5 @@
             "dest": "/"
         }
     ],
-    "rewrites": [{ "source": "/(.*)", "destination": "/src" }]
+    "rewrites": [{ "source": "/(.*)", "destination": "/app-user" }]
 }
