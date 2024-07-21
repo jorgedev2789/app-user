@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="butterup-main/butterup.min.css" />
+    <script src="butterup-main/butterup.min.js"></script>
+    <title>Test</title>
+</head>
+<body>
+  <% if (message != '') { %>
+    <div class="invalid-feedback">
+      
+      <script type="text/javascript">
+
+        window.onload = function() {
+          butterup.toast({
+            title:'Error!',
+            message:'<%= message %>',
+            location:'top-center',
+            type:'error'
+        });
+        }
+      </script>
+    </div>
+    <% } %> 
+    <div class="log-form">
+        <h2>INICIAR SESION</h2>
+        <form method="post" action="/api/auth/signin">
+          <input type="text" name="email" title="username" placeholder="username" />
+          <input type="password" name="password" title="username" placeholder="password" />
+          <button type="submit" class="btn">Login</button>
+        </form>
+      </div><!--end log form -->
+</body>
+</html>

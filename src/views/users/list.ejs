@@ -1,0 +1,75 @@
+
+<%- include('../partials/head'); %>
+<body>
+  <%- include('../partials/header'); %>
+
+    <div class="container-fluid">
+      <div class="row">
+        <%- include('../partials/nav'); %>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <h1 class="h2">Users</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+              <a href="/users/create" class="btn btn-small btn-primary">Create </a>
+            </div>
+          </div>
+          
+        <table
+          id="table"
+          data-toggle="table"
+          data-height="460"
+          data-ajax="ajaxRequest"
+          data-search="true"
+          data-side-pagination="server"
+          data-page-size="10"
+          data-pagination="true">
+          <thead>
+            <tr>
+              <th data-field="id">ID</th>
+              <th data-field="firstname">Name</th>
+              <th data-field="lastname">LastName</th>
+              <th data-field="email">Email</th>
+              <th data-field="email">Username</th>
+              <th data-formatter="actionsFormatter">Action</th>
+            </tr>
+          </thead>
+        </table>
+
+        <script>
+
+          function actionsFormatter(value, row) {
+            return `
+            <a href='/users/edit/${row.id}'><i class="bi bi-pencil-fill"></i></a>
+            &nbsp;
+            <a href='' class='text-red' onclick='deleteUser("${row.id}")'><i class="bi bi-trash3"></i></a>
+            `
+          }
+
+          function deleteUser(id) {
+            var url = '/api/users/'
+            $.ajax(url + id, { type: 'delete'}).then(function (res) {
+              location.href = url;
+            })
+            return 
+          }
+
+          // your custom ajax request here
+          function ajaxRequest(params) {
+            var url = '/api/users/'
+            $.get(url + '?' + $.param(params.data)).then(function (res) {
+              params.success(res)
+            })
+          }
+        </script>
+
+        </main>
+      </div>
+    </div>
+
+    
+    <%- include('../partials/footer'); %>
+
+  
+</body>
+</html>
