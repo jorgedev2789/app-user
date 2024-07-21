@@ -40,7 +40,10 @@ export const signupHandler = async (req, res) => {
 export const signinHandler = async (req, res) => {
   try {
     // Request body email can be an email or username
-    const userFound = await User.findOne({ email: req.body.email }).populate(
+    const userFound = await User.findOne({$or: [
+      {email: req.body.email},
+      {username: req.body.email}
+  ]}).populate(
       "roles"
     );
 
